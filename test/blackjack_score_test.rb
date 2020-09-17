@@ -18,26 +18,63 @@ describe 'Blackjack Score' do
     score = blackjack_score(hand)
 
     # Assert <-  You do this part!
-
-  end
+    expect(score).must_equal(3 + 4)
+    end
 
   it 'facecards have values calculated correctly' do
+    #   Arrange
+    hand = [ "Queen", "King"]
+
+    #   Act
+    score = blackjack_score(hand)
+
+    #   Assert <-  You do this part!
+    expect(score).must_equal 20
 
   end
 
   it 'calculates aces as 11 where it does not go over 21' do
+    #   Arrange
+    hand = ["Ace", 10]
 
+    #   Act
+    score = blackjack_score(hand)
+
+    #   Assert <-  You do this part!
+    expect(score).must_equal 21
   end
 
   it 'calculates aces as 1, if an 11 would cause the score to go over 21' do
+    #   Arrange
+    hand = ["Ace", 10, 10]
 
+    #   Act
+    score = blackjack_score(hand)
+
+    #   Assert <-  You do this part!
+    expect(score).must_equal 21
   end
 
   it 'raises an ArgumentError for invalid cards' do
-
+    expect{
+      blackjack_score(["Tiny", 32, 12, "&"])
+    }.must_raise ArgumentError
   end
 
   it 'raises an ArgumentError for scores over 21' do
-
+    expect{
+      blackjack_score([10, 8, 10])
+    }.must_raise ArgumentError
   end
 end
+
+# Help?
+# it 'raises and ArgumentError for hand with more than 5 cards' do
+#   expect{
+#     blackjack_score (["Ace", "10", "9", "4", "2", "6", "Queen"])
+#   }.must_raise ArgumentError
+# end
+#
+# if hand > 5 || hand < 2
+#   raise ArgumentError.new("Need at least 2 card, but nor more than 5.")
+# end
